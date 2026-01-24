@@ -294,7 +294,6 @@ system/priv-app/SamsungCarKeyFw
 SYSTEM_EXT_DEBLOAT+="
 framework/org.carconnectivity.android.digitalkey.rangingintent.jar
 framework/org.carconnectivity.android.digitalkey.secureelement.jar
-priv-app/com.qualcomm.location
 "
 
 # Search engine selector

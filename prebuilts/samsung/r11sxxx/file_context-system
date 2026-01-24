@@ -757,4 +757,11 @@
 /system/lib/libm\.so u:object_r:system_lib_file:s0
 /system/lib/libdl\.so u:object_r:system_lib_file:s0
 /system/lib/libdl_android\.so u:object_r:system_lib_file:s0
+/system/lib/libSAEWrapper\.so u:object_r:system_lib_file:s0
+/system/lib/libsavsac\.so u:object_r:system_lib_file:s0
+/system/lib/libAudioTranscoder\.so u:object_r:system_lib_file:s0
+/system/lib/libmediarelayengine\.so u:object_r:system_lib_file:s0
+/system/lib/libsnamrwb\.so u:object_r:system_lib_file:s0
+/system/lib/libSRTP\.so u:object_r:system_lib_file:s0
+/system/lib/libsnamrnb\.so u:object_r:system_lib_file:s0
 

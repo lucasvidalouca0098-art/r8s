@@ -22,24 +22,6 @@ if [[ "$SOURCE_AUTO_BRIGHTNESS_TYPE" != "$TARGET_AUTO_BRIGHTNESS_TYPE" && "$TARG
     LOG_STEP_OUT
 fi
 
-if ! $SOURCE_HAS_QHD_DISPLAY; then
-    if $TARGET_HAS_QHD_DISPLAY; then
-        LOG_STEP_IN "- Applying multi resolution patches"
-
-        DECODE_APK "system" "system/framework/framework.jar"
-        DECODE_APK "system" "system/framework/gamemanager.jar"
-        DECODE_APK "system" "system/priv-app/SecSettings/SecSettings.apk"
-
-        ADD_TO_WORK_DIR "$MODPATH/resolution/system" "system" "."
-        ADD_TO_WORK_DIR "e2sxxx" "system" "media"
-        APPLY_PATCH "system" "system/framework/framework.jar" "$SRC_DIR/unica/patches/product_feature/resolution/framework.jar/0001-Enable-dynamic-resolution-control.patch"
-        APPLY_PATCH "system" "system/framework/gamemanager.jar" "$SRC_DIR/unica/patches/product_feature/resolution/gamemanager.jar/0001-Enable-dynamic-resolution-control.patch"
-        APPLY_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" "$SRC_DIR/unica/patches/product_feature/resolution/SecSettings.apk/0001-Enable-dynamic-resolution-control.patch"
-        SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_COMMON_CONFIG_DYN_RESOLUTION_CONTROL" "WQHD,FHD,HD"
-        LOG_STEP_OUT
-    fi
-fi
-
 DECODE_APK "system" "system/framework/framework.jar"
 
 if [[ "$TARGET_HFR_SEAMLESS_BRT" == "none" && "$TARGET_HFR_SEAMLESS_LUX" == "none" ]]; then
@@ -160,18 +142,6 @@ if [ ! -f "$FW_DIR/${MODEL}_${REGION}/vendor/etc/permissions/android.hardware.st
     LOG_STEP_OUT
 fi
 
-DECODE_APK "system" "system/priv-app/SecSettings/SecSettings.apk"
-DECODE_APK "system" "system/framework/semwifi-service.jar"
-
-if $SOURCE_SUPPORT_HOTSPOT_DUALAP; then
-    if ! $TARGET_SUPPORT_HOTSPOT_DUALAP; then
-        LOG_STEP_IN "- Applying Hotspot DualAP patches"
-        APPLY_PATCH "system" "system/framework/semwifi-service.jar" "$SRC_DIR/unica/patches/product_feature/wifi/semwifi-service.jar/0001-Disable-DualAP-support.patch"
-        APPLY_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" "$SRC_DIR/unica/patches/product_feature/wifi/SecSettings.apk/0001-Disable-DualAP-support.patch"
-        LOG_STEP_OUT
-    fi
-fi
-
 if $SOURCE_SUPPORT_HOTSPOT_WPA3; then
     if ! $TARGET_SUPPORT_HOTSPOT_WPA3; then
         LOG_STEP_IN "- Applying Hotspot WPA3 patches"
@@ -195,14 +165,6 @@ fi
 #         LOG_STEP_OUT
 #     fi
 # fi
-
-if $SOURCE_SUPPORT_HOTSPOT_ENHANCED_OPEN; then
-    if ! $TARGET_SUPPORT_HOTSPOT_ENHANCED_OPEN; then
-        LOG_STEP_IN "- Applying Hotspot Enhanced Open patches"
-        APPLY_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" "$SRC_DIR/unica/patches/product_feature/wifi/SecSettings.apk/0003-Disable-Hotspot-Enhanced-Open.patch"
-        LOG_STEP_OUT
-    fi
-fi
 
 if ! $SOURCE_AUDIO_SUPPORT_ACH_RINGTONE; then
     if $TARGET_AUDIO_SUPPORT_ACH_RINGTONE; then
