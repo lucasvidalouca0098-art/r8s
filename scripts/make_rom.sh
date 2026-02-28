@@ -1,3 +1,160 @@
+Android Artisan
+android_artisan
+Online
+
+ditternation
+ — 1:59 PM
+lets see if it works
+
+Android Artisan — 2:10 PM
+Wont work lol
+ditternation
+ — 2:10 PM
+it will
+Android Artisan — 2:10 PM
+The header is wrong
+ditternation
+ — 2:10 PM
+?
+Android Artisan — 2:10 PM
+Instead if the first from you should replace with commit
+Also remive the date just after the commit hash
+ditternation
+ — 2:11 PM
+ye but wont affect
+
+Android Artisan — 2:11 PM
+K
+ditternation
+ — 2:12 PM
+ill edit later
+
+thanks
+
+and i doubt the zip will fully flash
+
+but lets see
+
+Nope, stuck
+Image
+
+Android Artisan — 2:41 PM
+Hmm
+Then ill make a tar ig
+ditternation
+ — 2:42 PM
+made already
+
+booting up
+
+ditternation
+ — 2:52 PM
+u were right
+From cb91d2535084557f55636cd293f981a790506fd8 Mon Sep 17 00:00:00 2001
+From: ditternation <ditternation@outlook.com>
+Date: Sat, 28 Feb 2026 10:56:47 +0100
+Subject: [PATCH] Fake Device Image Handler
+
+
+
+0001-Fake-Device-Image-Handler.patch
+1 KB
+
+
+
+sorry
+
+ditternation
+ — 3:58 PM
+hi!
+
+commit c7f4a9d0b32ef18c4b6e91a78fd23b59ac4e7d12
+Author: Android-Artisan <romartisan2025@gmail.com>
+Date:   Thu, 26 Feb 2026 13:06:54 +0100
+Subject: [PATCH] Add fake device image to SecSettings.apk
+
+diff --git a/smali_classes5/com/samsung/android/settings/deviceinfo/aboutphone/DeviceImageManager$1.smali b/smali_classes5/com/samsung/android/settings/deviceinfo/aboutphone/DeviceImageManager$1.smali
+
+
+0001-Fake-Device-Image-Handler.patch
+1 KB
+
+
+
+finally
+
+ditternation
+ — 4:39 PM
+its working
+
+xd
+Android Artisan — 4:49 PM
+Wohoo
+Android Artisan — 6:10 PM
+How to flash the rom
+I have the zip but it wont flash
+Stuck same like you
+Android Artisan
+ started a call that lasted a few seconds. — 6:29 PM
+ditternation
+ — 6:30 PM
+sec
+Android Artisan — 6:31 PM
+huh
+ditternation
+ — 6:31 PM
+im making unica
+with s26fw
+Android Artisan — 6:32 PM
+k so how do i flash my zip tho
+ditternation
+ — 6:32 PM
+here
+#!/usr/bin/env bash
+#
+# Copyright (C) 2023 Salvo Giangreco
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+
+
+build_odin_package.sh.txt
+6 KB
+
+
+
+add in scripts/internal
+Android Artisan — 6:33 PM
+k and then
+ditternation
+ — 6:34 PM
+nano scripts/make_rom.sh and change zip to tar at the bottom
+#!/usr/bin/env bash
+#
+# Copyright (C) 2025 Salvo Giangreco
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+
+
+make_rom.sh
+6 KB
+
+
+
+here
+just replace
+then do perms
+so chmod +x path to
+Android Artisan — 6:34 PM
+k
+
+
+ditternation
+
+ditternation
+
+ 
 #!/usr/bin/env bash
 #
 # Copyright (C) 2025 Salvo Giangreco
@@ -172,9 +329,9 @@ if [ -n "$GITHUB_ACTIONS" ]; then
     bash "$SRC_DIR/scripts/cleanup.sh" fw kernel
 fi
 
-if $BUILD_ZIP; then
-    LOG_STEP_IN true "Creating zip"
-    "$SRC_DIR/scripts/internal/build_flashable_zip.sh" || exit 1
+if $BUILD_TAR; then
+    LOG_STEP_IN true "Creating tar"
+    "$SRC_DIR/scripts/internal/build_odin_package.sh" || exit 1
     LOG_STEP_OUT
 fi
 
