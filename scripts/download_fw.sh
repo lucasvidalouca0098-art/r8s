@@ -174,7 +174,7 @@ for i in "${FIRMWARES[@]}"; do
         (
         cd "$OUT_DIR"
         STR=""
-        [ $MODEL == "SM-S948B" ] && STR=" -v S948BXXU1AZAB/S948BOXM1AZAB/S948BXXU1AZAB/S948BXXU1AZAB"
+        [ $MODEL == "SM-S942B" ] && STR=" -v S942BXXU1AZAQ/S942BOXM1AZAQ/S942BXXU1AZAQ/S942BXXU1AZAQ"
         samloader -m "$MODEL" -r "$CSC" -i "$IMEI" -s "$SERIAL_NO" download$STR -O "$ODIN_DIR/${MODEL}_${CSC}" || exit 1
         )
 
